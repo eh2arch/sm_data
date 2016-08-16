@@ -62,7 +62,7 @@ class TwitterTasks:
 
 		unlocked = False
 		lock     = redis.Redis().lock(
-			'twitter_stream',
+			'twitter_stream_%s_%s' % (location_bounding_box, search_terms),
 			timeout = 600) # expire in 600 seconds
 
 		try:

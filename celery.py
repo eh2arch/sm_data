@@ -17,10 +17,14 @@ app.conf.update(
    # BROKER_TRANSPORT_OPTIONS={"SOCKET_TIMEOUT" : 60}
 )
 
+CELERY_ROUTES = {
+    'isi.instagram_tasks.get_instagram_attributes': {'queue': 'secondary_queue'},
+}
+
 app.conf.CELERYBEAT_SCHEDULE = {
 	'instagram-stream-every-60-minutes': {
 		'task': 'isi.instagram_tasks.get_instagram_posts',
-		'schedule': timedelta(minutes=60),
+		'schedule': timedelta(minutes=1),
 		'kwargs': ({'lat': 34.0231837184805, 'lng': -118.481569383702, 'radius': 5000})
 	},
 	'twitter-stream-every-60-minutes': {

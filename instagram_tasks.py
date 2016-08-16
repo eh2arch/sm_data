@@ -47,8 +47,10 @@ def check_and_get_likes(data):
 	if int(data['likes']['count']) != 0:
 		InstagramTasks.get_instagram_attributes.delay(data['_id'], media_type='likes')
 
-def process_instagram_data(data, db_name='db_instagram_posts'):
+def process_instagram_data(data, db_name='db_instagram_posts', db_dict=None):
 	map(lambda x: x.update({'_id': str(x['id'])}), data)
+	if db_dict != None:
+		map(lambda x: x.update(db_dict), data)
 	try:
 		getattr(sys.modules[__name__], db_name).insert(data, continue_on_error=True)
 	except pymongo.errors.DuplicateKeyError:
@@ -66,14 +68,13 @@ class InstagramTasks:
 
 		unlocked = False
 		lock     = redis.Redis().lock(
-			'instagram_posts',
-			timeout = 600) # expire in 600 seconds
+			'instagram_posts_%s_%s_%s_%s' % (lat, lng, radius, max_timestamp),
+			timeout = 120) # expire in 120 seconds
 
 		try:
 			unlocked = lock.acquire(blocking = False)
 
 			if unlocked:
-				print 'started'
 				# Do stuff here
 				api_key = get_api_key()
 				base_url = 'https://api.instagram.com/v1/media/search?access_token=%s&count=33' % api_key['api_key']
@@ -87,7 +88,9 @@ class InstagramTasks:
 
 				process_instagram_data(data, db_name='db_instagram_posts')
 
-				db_osn_meta_data.update({'social_network': 'instagram'}, {'$set':{'max_timestamp': str(data[-1]['created_time'])}}, upsert=True)
+				new_max_timestamp = str(data[-1]['created_time'])
+				db_osn_meta_data.update({'social_network': 'instagram'}, {'$set':{'max_timestamp': new_max_timestamp}}, upsert=True)
+				InstagramTasks().get_instagram_posts.delay(lat, lng, radius, new_max_timestamp)
 
 				post_process_instagram_post_data(data)
 
@@ -99,12 +102,12 @@ class InstagramTasks:
 			if unlocked:
 				lock.release()
 
-	@app.task(bind=True, max_retries=None, default_retry_delay=1)
+	@app.task(bind=True, max_retries=5, default_retry_delay=1, queue='secondary_queue')
 	def get_instagram_attributes(self, media_id, media_type='comments'):
 		unlocked = False
 		lock     = redis.Redis().lock(
 			'instagram_%s_%s' % (media_type, media_id),
-			timeout = 600) # expire in 600 seconds
+			timeout = 120) # expire in 120 seconds
 
 		try:
 			unlocked = lock.acquire(blocking = False)
@@ -114,7 +117,7 @@ class InstagramTasks:
 				api_key = get_api_key()
 				base_url = 'https://api.instagram.com/v1/media/%s/%s?access_token=%s&count=33' % (media_id, media_type, api_key['api_key'])
 				data = get_instagram_data(base_url)['data']
-				process_instagram_data(data, db_name='db_instagram_%s' % media_type)
+				process_instagram_data(data, db_name='db_instagram_%s' % media_type, db_dict={'instagram_post_id': media_id})
 
 		except Exception as e:
 			print "Error: %s" % e
