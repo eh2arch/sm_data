@@ -2,7 +2,6 @@ from __future__ import absolute_import
 from isi.celery import app
 from bson.objectid import ObjectId
 import sys
-from celery_once import QueueOnce
 import redis
 import pymongo
 import isi.database_connector as db
@@ -41,10 +40,14 @@ def get_api_key():
 
 class StdOutListener(StreamListener):
 
+	# After getting data from twitter stream
 	def on_data(self, data):
 		post_data = json.loads(data)
 		post_data['_id'] = str(post_data['id_str'])
-		db_twitter_posts.insert(post_data)
+		try:
+			db_twitter_posts.insert(post_data, continue_on_error=True)
+		except pymongo.errors.DuplicateKeyError:
+			pass
 		print "Data inserted"
 		return True
 
@@ -54,20 +57,32 @@ class StdOutListener(StreamListener):
 class TwitterTasks:
 	#This is a basic listener that just prints received tweets to stdout.
 
-	@app.task(bind=True, max_retries=None, default_retry_delay=1, base=QueueOnce, once={'graceful': True})
+	@app.task(bind=True, max_retries=None, default_retry_delay=1)
 	def get_tweets(self, location_bounding_box=None, search_terms=None):
 
-		try:
-			auth = _get_api_client(get_api_key())
-			# print(type(location_bounding_box))
-			# print location_bounding_box
-			#This handles Twitter authentication and the connection to Twitter Streaming API
-			l = StdOutListener()
-			stream = Stream(auth, l)
+		unlocked = False
+		lock     = redis.Redis().lock(
+			'twitter_stream',
+			timeout = 600) # expire in 600 seconds
 
-			#This line filter Twitter Streams to capture data by search terms or locations
-			stream.filter(track=search_terms, locations=location_bounding_box)
+		try:
+			unlocked = lock.acquire(blocking = False)
+
+			if unlocked:
+				# Do stuff here
+				auth = _get_api_client(get_api_key())
+				# print(type(location_bounding_box))
+				# print location_bounding_box
+				#This handles Twitter authentication and the connection to Twitter Streaming API
+				l = StdOutListener()
+				stream = Stream(auth, l)
+
+				#This line filter Twitter Streams to capture data by locations or search terms
+				stream.filter(locations=location_bounding_box, track=search_terms)
 		except Exception as e:
 			print "Error: %s" % e
 			traceback.print_exc()
 			self.retry(exc=e, countdown=1)
+		finally:
+			if unlocked:
+				lock.release()

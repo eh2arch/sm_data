@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 from celery import Celery
-from celery_once import QueueOnce
 import redis
 import datetime
 from pytz import timezone
@@ -8,9 +7,7 @@ import feedparser
 from datetime import timedelta
 from dateutil.tz import tzutc
 
-app = Celery('isi', broker = 'amqp://', backend = 'amqp://', include=['isi.twitter_tasks'])
-app.conf.ONCE_REDIS_URL = 'redis://localhost:6379/0'
-app.conf.ONCE_DEFAULT_TIMEOUT = 60 * 60 # Lock expires in 10 minutes
+app = Celery('isi', broker = 'amqp://', backend = 'amqp://', include=['isi.twitter_tasks', 'isi.instagram_tasks'])
 
 app.conf.update(
 	BROKER_POOL_LIMIT=None,
@@ -21,11 +18,17 @@ app.conf.update(
 )
 
 app.conf.CELERYBEAT_SCHEDULE = {
+	'instagram-stream-every-60-minutes': {
+		'task': 'isi.instagram_tasks.get_instagram_posts',
+		'schedule': timedelta(minutes=60),
+		'kwargs': ({'lat': 34.0231837184805, 'lng': -118.481569383702, 'radius': 5000})
+	},
 	'twitter-stream-every-60-minutes': {
 		'task': 'isi.twitter_tasks.get_tweets',
-		'schedule': timedelta(minutes=1),
+		'schedule': timedelta(minutes=60),
 		'kwargs': ({'location_bounding_box': [-118.517415, 33.995416, -118.443517, 34.05056]})
 	}
+
 }
 
 
