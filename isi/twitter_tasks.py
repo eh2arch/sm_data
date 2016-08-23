@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from isi.celery import app
+from isi.tasks import app
 from bson.objectid import ObjectId
 import sys
 import redis
@@ -7,7 +7,7 @@ import pymongo
 import isi.database_connector as db
 import json
 import traceback
-import datetime
+from datetime import datetime
 from pytz import timezone
 import feedparser
 from datetime import timedelta
@@ -44,6 +44,7 @@ class StdOutListener(StreamListener):
 	def on_data(self, data):
 		post_data = json.loads(data)
 		post_data['_id'] = str(post_data['id_str'])
+		post_data['saved_at'] = datetime.now().isoformat()
 		try:
 			db_twitter_posts.insert(post_data, continue_on_error=True)
 		except pymongo.errors.DuplicateKeyError:
@@ -57,7 +58,7 @@ class StdOutListener(StreamListener):
 class TwitterTasks:
 	#This is a basic listener that just prints received tweets to stdout.
 
-	@app.task(bind=True, max_retries=None, default_retry_delay=1)
+	@app.task(bind=True, max_retries=5, default_retry_delay=5, queue='twitter_streaming_queue')
 	def get_tweets(self, location_bounding_box=None, search_terms=None):
 
 		unlocked = False

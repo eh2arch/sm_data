@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from isi.celery import app
+from isi.tasks import app
 from bson.objectid import ObjectId
 import sys
 import redis
@@ -8,7 +8,7 @@ import urllib2
 import isi.database_connector as db
 import json
 import traceback
-import datetime
+from datetime import datetime
 from pytz import timezone
 import feedparser
 from datetime import timedelta
@@ -36,7 +36,6 @@ def get_instagram_data(base_url):
 	media_pre = urllib2.urlopen(base_url,timeout=30)
 	media = json.load(media_pre)
 	media_pre.close()
-
 	return media
 
 def check_and_get_comments(data):
@@ -47,23 +46,25 @@ def check_and_get_likes(data):
 	if int(data['likes']['count']) != 0:
 		InstagramTasks.get_instagram_attributes.delay(data['_id'], media_type='likes')
 
+# Add _id field to posts and insert instagram_post_id to comments/likes
 def process_instagram_data(data, db_name='db_instagram_posts', db_dict=None):
-	map(lambda x: x.update({'_id': str(x['id'])}), data)
+	map(lambda x: x.update({'_id': str(x['id']), 'saved_at': datetime.now().isoformat()}), data)
 	if db_dict != None:
 		map(lambda x: x.update(db_dict), data)
 	try:
 		getattr(sys.modules[__name__], db_name).insert(data, continue_on_error=True)
+		print 'Data inserted'
 	except pymongo.errors.DuplicateKeyError:
 		pass
 
+# Get comments, likes for the instagram posts
 def post_process_instagram_post_data(data):
-	# Get comments, likes for the instagram posts
 	map(check_and_get_comments, data)
 	map(check_and_get_likes, data)
 
 class InstagramTasks:
 
-	@app.task(bind=True, max_retries=None, default_retry_delay=1)
+	@app.task(bind=True, max_retries=5, default_retry_delay=5, queue='instagram_search_queue')
 	def get_instagram_posts(self, lat=None, lng=None, radius=5000, max_timestamp=None):
 
 		unlocked = False
@@ -102,7 +103,7 @@ class InstagramTasks:
 			if unlocked:
 				lock.release()
 
-	@app.task(bind=True, max_retries=5, default_retry_delay=1, queue='secondary_queue')
+	@app.task(bind=True, max_retries=5, default_retry_delay=5, queue='instagram_secondary_queue')
 	def get_instagram_attributes(self, media_id, media_type='comments'):
 		unlocked = False
 		lock     = redis.Redis().lock(

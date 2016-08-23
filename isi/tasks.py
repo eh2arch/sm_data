@@ -18,7 +18,9 @@ app.conf.update(
 )
 
 CELERY_ROUTES = {
-    'isi.instagram_tasks.get_instagram_attributes': {'queue': 'secondary_queue'},
+    'isi.instagram_tasks.get_instagram_attributes': {'queue': 'instagram_secondary_queue'},
+    'isi.twitter_tasks.get_tweets': {'queue': 'twitter_streaming_queue'},
+    'isi.instagram_tasks.get_instagram_posts': {'queue': 'instagram_search_queue'}
 }
 
 app.conf.CELERYBEAT_SCHEDULE = {
@@ -29,7 +31,7 @@ app.conf.CELERYBEAT_SCHEDULE = {
 	},
 	'twitter-stream-every-60-minutes': {
 		'task': 'isi.twitter_tasks.get_tweets',
-		'schedule': timedelta(minutes=60),
+		'schedule': timedelta(minutes=1),
 		'kwargs': ({'location_bounding_box': [-118.517415, 33.995416, -118.443517, 34.05056]})
 	}
 
