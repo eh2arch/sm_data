@@ -50,5 +50,5 @@ def create_time_series_plot(db_name, time_field, query={}):
 	plt.savefig('%s_frequency_graph_%s_%s.png' % (db_name, datetime.now().strftime("%Y_%m_%d_%H_%M_%S"), ''.join(e for e in query if e.isalnum())))
 
 
-graph_dbs_list = [['instagram_posts', 'created_time', {}], ['instagram_likes', 'saved_at', {}], ['instagram_comments', 'created_time', {}], ['twitter_posts', 'created_at', {}], [['twitter_posts', 'created_at', {'coordinates':{'$ne':None}}]]]
+graph_dbs_list = [['instagram_posts', 'created_time', {}], ['instagram_likes', 'saved_at', {}], ['instagram_comments', 'created_time', {}], ['twitter_posts', 'created_at', {}], ['twitter_posts', 'created_at', {'coordinates':{'$ne':None}}]]
 [create_time_series_plot(db_name, time_field) for (db_name, time_field, query) in graph_dbs_list]
