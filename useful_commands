@@ -1,0 +1,80 @@
+rabbitmqadmin list queues name
+
+celery amqp queue.purge instagram_search_queue
+
+pgrep -u archits supervisord | sudo xargs kill -9
+pgrep -u archits celery | sudo xargs kill -9
+
+pipreqs location
+pip install -r requirements.txt
+
+db.twitter_posts.find({'coordinates':{$ne:null}},{'coordinates.coordinates': 1, 'text': 1})
+db.instagram_posts.find({},{'location.latitude': 1, 'location.longitude': 1, 'caption.text':1, 'tags':1})
+
+mongoexport -d isi_santa_monica -c instagram_posts -f location.latitude,location.longitude,caption.text,tags --out instagram_posts_dump_08_25_2016_06_47.json
+
+
+Twitter posts having geo coordinates
+17108
+
+Twitter count at 06:49
+115355
+
+Instagram count
+112910
+
+Likes
+367219
+
+Comments
+28268
+
+
+Posts having comment count > 0
+40946
+
+#db.instagram_posts.find({'likes.count':{'$gt':0}}).count()
+Posts having likes count > 0
+63619
+
+pgrep -u archit supervisord | sudo xargs kill -9
+pgrep -u archit celery | sudo xargs kill -9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Twitter
+5492654 - Total words
+1164947 - WKB Words
+5.90361514301 - Valence
+5.64923707259 - Dominance
+4.16781463019 - Affect
+
+
+
+Instagram posts
+
+5232061 - Total words
+8816107 - WKB Words
+6.18766882181 - Valence
+5.78344477717 - Dominance
+4.1608629893 - Affect
+
+
+Instagram Comments
+
+3079127 - Total words
+563056 - WKB Words
+6.39010402163 - Valence
+5.90702986914 - Dominance
+4.24662012304 - Affect
