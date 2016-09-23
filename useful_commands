@@ -2,8 +2,8 @@ rabbitmqadmin list queues name
 
 celery amqp queue.purge instagram_search_queue
 
-pgrep -u archits supervisord | sudo xargs kill -9
-pgrep -u archits celery | sudo xargs kill -9
+pgrep -u archit supervisord | sudo xargs kill -9
+pgrep -u archit celery | sudo xargs kill -9
 
 pipreqs location
 pip install -r requirements.txt
@@ -47,7 +47,7 @@ pgrep -u archit celery | sudo xargs kill -9
 
 
 
-
+plotmap.py
 
 
 
@@ -58,7 +58,7 @@ Twitter
 1164947 - WKB Words
 5.90361514301 - Valence
 5.64923707259 - Dominance
-4.16781463019 - Affect
+4.16781463019 - Arousal
 
 
 
@@ -68,7 +68,7 @@ Instagram posts
 8816107 - WKB Words
 6.18766882181 - Valence
 5.78344477717 - Dominance
-4.1608629893 - Affect
+4.1608629893 - Arousal
 
 
 Instagram Comments
@@ -77,4 +77,70 @@ Instagram Comments
 563056 - WKB Words
 6.39010402163 - Valence
 5.90702986914 - Dominance
-4.24662012304 - Affect
+4.24662012304 - Arousal
+
+
+
+
+
+
+
+
+
+
+--09-13-2016--
+
+Twitter
+138705 - Twitter posts with geo coordinates
+114449 - WKB Analyzed posts
+valence      6.001096
+arousal      4.148224
+dominance    5.613052
+
+
+Instagram Posts
+361299 - Total posts with geo coordinates
+258609 - WKB Analyzed posts
+valence      6.327977
+arousal      4.311188
+dominance    5.795368
+
+
+Instagram Comments
+600557 - Total number of posts
+291716 - WKB Analyzed posts
+valence      6.537544
+arousal      4.352565
+dominance    5.970616
+
+
+Correlations - WKB
+Twitter
+            valence   arousal  dominance
+valence    1.000000 -0.264976   0.820971
+arousal   -0.264976  1.000000  -0.163940
+dominance  0.820971 -0.163940   1.000000
+
+Instagram Posts
+            valence   arousal  dominance
+valence    1.000000 -0.330027   0.651406
+arousal   -0.330027  1.000000  -0.130260
+dominance  0.651406 -0.130260   1.000000
+
+
+Instagram Comments
+            valence   arousal  dominance
+valence    1.000000 -0.337782   0.584920
+arousal   -0.337782  1.000000  -0.089629
+dominance  0.584920 -0.089629   1.000000
+
+
+
+
+
+
+
+Error:
+ValueError: shapefile must have lat/lon vertices  - it looks like this one has vertices
+in map projection coordinates. You can convert the shapefile to geographic
+coordinates using the shpproj utility from the sha

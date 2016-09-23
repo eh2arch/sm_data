@@ -16,7 +16,8 @@ from matplotlib.pylab import rcParams
 from collections import defaultdict
 import csv
 import string
-
+import matplotlib
+matplotlib.style.use('ggplot')
 rcParams['figure.figsize'] = 15, 6
 
 db_api_keys	= db.collection('api_keys')
@@ -135,7 +136,7 @@ def get_wkb_data(db_name='twitter_posts', field_name='text', query={}):
 	db_words = defaultdict(lambda:{'count': 0, 'valence': 0, 'dominance': 0, 'affect': 0}, {})
 	wkb_words = create_wkb_dictionary()
 	text_list = []
-	db_data = getattr(sys.modules[__name__], 'db_%s' % db_name).find()
+	db_data = getattr(sys.modules[__name__], 'db_%s' % db_name).find().limit(10)
 	valence, dominance, affect, total_count, g_count = [0.0, 0.0, 0.0, 0, 0]
 	v, d, a = [[], [], []]
 	for data_val in db_data:
@@ -167,11 +168,11 @@ def get_wkb_data(db_name='twitter_posts', field_name='text', query={}):
 		ranges = np.linspace(min(vs['val'] for vs in lv), max(vs['val'] for vs in lv), 21)
 		data = pd.DataFrame(lv, columns=['val'])
 		data = data.groupby(pd.cut(data.val, ranges)).count()
-		data.plot()
+		data.plot(kind='bar', legend=True, figsize=(15,10), fontsize=12, alpha=0.75, rot=65)
 		plt.xlabel(name)
 		plt.ylabel('Count')
-		plt.savefig('%s_%s_%s.png' % (db_name, name, datetime.now().strftime("%Y_%m_%d_%H_%M_%S")))
-
+		# plt.savefig('%s_%s_%s.png' % (db_name, name, datetime.now().strftime("%Y_%m_%d_%H_%M_%S")))
+		plt.show()
 
 	# pd.DataFrame(d, columns=['sentiment'])
 	# pd.DataFrame(a, columns=['sentiment'])
@@ -182,4 +183,99 @@ def get_wkb_data(db_name='twitter_posts', field_name='text', query={}):
 	print dominance/g_count
 	print affect/g_count
 
-get_wkb_data()
+# get_wkb_data()
+
+def show_wkb_bar_graphs(db_name='twitter_posts', query={}):
+	db_data = list(getattr(sys.modules[__name__], 'db_%s' % db_name).find(query, {'arousal': 1, 'dominance': 1, 'valence': 1}))
+	data = pd.DataFrame(db_data, columns=['valence', 'arousal', 'dominance'])
+	# min_val, max_val = data.min().min(), data.max().max()
+	# ranges = np.linspace(min_val, max_val, 21)
+	# data1 = data.groupby(pd.cut(data['valence'], ranges)).count()[['valence']]
+	# data2 = data.groupby(pd.cut(data['arousal'], ranges)).count()[['arousal']]
+	# data3 = data.groupby(pd.cut(data['dominance'], ranges)).count()[['dominance']]
+	# data = pd.concat([data1, data2, data3], axis=1)
+	# print data.corr()
+	# data.plot(kind='bar', legend=True, figsize=(15,10), fontsize=12, alpha=0.75, rot=65)
+	# plt.xlabel('WKB variables')
+	# plt.ylabel('Count')
+	# plt.tight_layout()
+	# plt.savefig('%s_%s_%s.png' % (db_name, 'WKB_variables', datetime.now().strftime("%Y_%m_%d_%H_%M_%S")))
+	# plt.show()
+	# print data1.columns
+	# print data1
+	# pd.merge(data1, data2, on='')
+	# print data
+	print data.sum()/data.count()
+
+
+# show_wkb_bar_graphs(query={'wkb_sentiment_analysis_flag': True})
+# show_wkb_bar_graphs(db_name='instagram_posts', query={'wkb_sentiment_analysis_flag': True})
+# show_wkb_bar_graphs(db_name='instagram_comments', query={'wkb_sentiment_analysis_flag': True})
+
+def show_sentistrength_bar_graphs(db_name='twitter_posts', query={'sentstrength_negative_sentiment':{'$ne':None}}):
+	db_data = list(getattr(sys.modules[__name__], 'db_%s' % db_name).find(query, {'sentstrength_negative_sentiment':1, 'sentstrength_positive_sentiment':1}))
+	print 'done'
+	for sentiment in ['positive', 'negative']:
+		data = pd.DataFrame(db_data, columns=['sentstrength_%s_sentiment' % (sentiment)])
+		# min_val, max_val = data.min().min(), data.max().max()
+		# ranges = np.linspace(1, 5, 5)
+		# if min_val < 0:
+		# 	ranges = np.linspace(-5, -1, 5)
+		# data = data.groupby(pd.cut(data['sentstrength_%s_sentiment' % (sentiment)], ranges)).count()
+		# data.plot(kind='bar', legend=True, figsize=(15,10), fontsize=12, alpha=0.75, rot=65)
+		# xlabel = 'Sentistrength %s sentiment' % (sentiment)
+		# plt.xlabel(xlabel)
+		# plt.ylabel('Count')
+		# plt.tight_layout()
+		# plt.savefig('%s_%s_%s.png' % (db_name, ('_').join(xlabel.split()), datetime.now().strftime("%Y_%m_%d_%H_%M_%S")))
+		# plt.clf()
+		# # plt.show()
+		# # print data1.columns
+		# # print data1
+		# # pd.merge(data1, data2, on='')
+		# # print data
+		print data.sum()/data.count()
+
+# show_sentistrength_bar_graphs()
+# show_sentistrength_bar_graphs(db_name='instagram_posts')
+# show_sentistrength_bar_graphs(db_name='instagram_comments')
+
+
+def show_different_wkb():
+	data = pd.DataFrame({'WKB Parameters': ['Valence', 'Arousal', 'dominance'], 'Twitter': [6.001096, 4.148224, 5.613052], 'Instagram Posts':[6.327977, 4.311188, 5.795368], 'Instagram Comments':[6.537544, 4.352565, 5.970616]})
+	data = data.set_index(['WKB Parameters'])
+	data.plot(kind='bar', legend=True, figsize=(15,10), fontsize=12, alpha=0.75, rot=65)
+	# data.set_xticklabels(['Twitter', 'Instagram Posts', 'Instagram Comments'])
+	# plt.legend(handles=['Twitter', 'Instagram Posts', 'Instagram Comments'])
+	plt.xlabel('WKB Parameters')
+	plt.ylabel('Values')
+	plt.tight_layout()
+	plt.savefig('WKB Parameters.png')
+
+	# plt.show()
+
+show_different_wkb()
+
+def show_different_correlations():
+	data = pd.DataFrame({'WKB Parameters': ['V/A', 'A/D', 'D/V'], 'Twitter': [-0.264976,-0.163940, 0.820971], 'Instagram Posts':[-0.330027, -0.130260, 0.651406], 'Instagram Comments':[-0.337782, -0.089629, 0.584920]})
+	data = data.set_index(['WKB Parameters'])
+	data.plot(kind='bar', legend=True, figsize=(15,10), fontsize=12, alpha=0.75, rot=65)
+	# data.set_xticklabels(['Twitter', 'Instagram Posts', 'Instagram Comments'])
+	# plt.legend(handles=['Twitter', 'Instagram Posts', 'Instagram Comments'])
+	plt.xlabel('WKB Parameters')
+	plt.ylabel('Values')
+	plt.tight_layout()
+	plt.savefig('WKB Correlations.png')
+
+show_different_correlations()
+
+
+def show_different_sentistrength():
+	data = pd.DataFrame({'WKB Parameters': ['Positive', 'Negative'], 'Twitter': [1.428247,-1.088973], 'Instagram Posts':[1.683773, -1.142164], 'Instagram Comments':[1.802289, -1.070709]})
+	data = data.set_index(['WKB Parameters'])
+	data.plot(kind='bar', legend=True, figsize=(15,10), fontsize=12, alpha=0.75, rot=65)
+	plt.xlabel('SentiStrength')
+	plt.ylabel('Values')
+	plt.tight_layout()
+	plt.savefig('SentiStrength Correlations.png')
+# show_different_sentistrength()
