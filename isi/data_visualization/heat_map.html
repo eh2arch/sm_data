@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Heatmaps</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="maps_visualization.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="chroma.min.js"></script>
+  </head>
+
+  <body>
+    <div id="map-container">
+      <div id="controls" class="nicebox">
+        <div class="row">
+          <div class="col-md-4">
+            <label class="radio inline">
+              <input type="radio" value="twitter_posts" checked="checked" name="osn_select">
+              Twitter
+            </label>
+          </div>
+          <div class="col-md-4">
+            <label class="radio inline">
+              <input type="radio" value="instagram_posts" name="osn_select">
+              Instagram
+            </label>
+          </div>
+          <div class="col-md-4">
+            <label class="checkbox inline">
+              <input type="checkbox" name="show_heatmap">
+              Heat Map
+            </label>
+          </div>
+        </div>
+        <div>
+          <select id="census-variable">
+            <option value="count">Post Count</option>
+            <option value="comments_count_avg" class="instagram_option" style="display:none">Comments Count</option>
+            <option value="likes_count_avg" class="instagram_option" style="display:none">Likes Count</option>
+            <option value="arousal_avg">WKB Arousal</option>
+            <option value="dominance_avg">WKB Dominance</option>
+            <option value="valence_avg">WKB Valence</option>
+            <option value="sentstrength_positive_sentiment_avg">SentiStrength Positive</option>
+            <option value="sentstrength_negative_sentiment_avg">SentiStrength Negative</option>
+          </select>
+        </div>
+        <div id="legend">
+          <div id="census-min">29.3</div>
+          <div class="color-key"><span id="data-caret" style="display: block; padding-left: 33.3333%;">◆</span></div>
+          <div id="census-max">42.8</div>
+        </div>
+      </div>
+      <div id="data-box" class="nicebox" style="display: block;">
+        <label id="data-label" for="data-value">Alaska</label>
+        <span id="data-value">33.8</span>
+      </div>
+
+      <div id="map"></div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWoIeLpnd3Wd-6R-BS5S0VMJxkYjv-csM&libraries=visualization">
+    </script>
+    <script src="maps_visualization.js"></script>
+  </body>
+</html>
