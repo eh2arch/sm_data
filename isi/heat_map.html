@@ -47,6 +47,9 @@
       <button onclick="changeOpacity()">Change opacity</button>
     </div>
  -->    <div id="map"></div>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWoIeLpnd3Wd-6R-BS5S0VMJxkYjv-csM&libraries=visualization">
+    </script>
     <script>
 
       // This example requires the Visualization library. Include the libraries=visualization
@@ -61,136 +64,139 @@
           center: {lat: 34.0231837184805, lng: -118.481569383702},
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        // Create the state data layer and load the GeoJson Data
-        // var stateLayer = new google.maps.Data();
-        // stateLayer.loadGeoJson('158-00.geojson');
 
-        map.data.loadGeoJson('158-00.geojson');
+        var points=getPoints();
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          dissipating: true,
+          maxIntensity: 1,
+          data: points,
+          map: map
+        });
+        // heatmap.setMap(map);
+        heatmap.set('radius', heatmap.get('radius') ? null : 7.5);
+        // changeGradient();
 
+        // var rectangle = new google.maps.Rectangle({
+        //   strokeColor: '#0000FF',
+        //   strokeOpacity: 0.6,
+        //   strokeWeight: 2,
+        //   fillColor: '#0000FF',
+        //   fillOpacity: 0,
+        //   map: map,
+        //   bounds: {
+        //     north: 34.05056,
+        //     south: 33.995416,
+        //     east: -118.443517,
+        //     west: -118.517415
+        //   }
+        // });
 
-        // Final step here sets the stateLayer GeoJSON data onto the map
-        // stateLayer.setMap(map);
-        // Set the stroke width, and fill color for each polygon
-        // map.data.setStyle({
-        //   fillColor: 'green',
-        //   strokeWeight: 3
+        // // Add the circle for this city to the map.
+        // var cityCircle = new google.maps.Circle({
+        //   strokeColor: '#FF0000',
+        //   strokeOpacity: 0.8,
+        //   strokeWeight: 2,
+        //   fillColor: '#FF0000',
+        //   fillOpacity: 0,
+        //   map: map,
+        //   center: {lat: 34.0231837184805, lng: -118.481569383702},
+        //   radius: 5000
         // });
 
       }
 
+      function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+      }
 
-//         heatmap = new google.maps.visualization.HeatmapLayer({
-//           data: getPoints(),
-//           map: map
-//         });
-//         changeGradient();
+      function changeGradient() {
+        var gradient = [
+        // "#ffffe0", "#f1f1da", "#e4e4d5", "#d6d6d0", "#c9c9cb", "#bbbbc6", "#aeaec1", "#a1a1bc", "#9393b7", "#8686b2", "#7878ad", "#6b6ba8", "#5d5da3", "#50509e", "#434399", "#353594", "#28288f", "#1a1a8a", "#0d0d85", "#000080"
+          // 'rgba(0, 255, 255, 0)',
+          // 'rgba(0, 255, 255, 1)',
+          // 'rgba(0, 191, 255, 1)',
+          // 'rgba(0, 127, 255, 1)',
+          // 'rgba(0, 63, 255, 1)',
+          // 'rgba(0, 0, 255, 1)',
+          // 'rgba(0, 0, 223, 1)',
+          // 'rgba(0, 0, 191, 1)',
+          // 'rgba(0, 0, 159, 1)',
+          // 'rgba(0, 0, 127, 1)',
+          // 'rgba(63, 0, 91, 1)',
+          // 'rgba(127, 0, 63, 1)',
+          // 'rgba(191, 0, 31, 1)',
+          // 'rgba(255, 0, 0, 1)'
+'rgba(0,0,0)'
+,'rgba(0,0,1)'
+,'rgba(0,0,2)'
+,'rgba(0,0,3)'
+,'rgba(0,0,4)'
+,'rgba(0,0,5)'
+,'rgba(0,0,6)'
+,'rgba(0,0,7)'
+,'rgba(0,0,8)'
+,'rgba(0,0,9)'
+,'rgba(0,0,10)'
+,'rgba(0,0,11)'
+,'rgba(0,0,12)'
+,'rgba(0,0,13)'
+,'rgba(0,0,14)'
+,'rgba(0,0,15)'
+,'rgba(0,0,16)'
+,'rgba(0,0,17)'
+,'rgba(0,0,18)'
+,'rgba(0,0,19) '
+        ]
+        heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+      }
 
-//         var rectangle = new google.maps.Rectangle({
-//           strokeColor: '#0000FF',
-//           strokeOpacity: 0.6,
-//           strokeWeight: 2,
-//           fillColor: '#0000FF',
-//           fillOpacity: 0,
-//           map: map,
-//           bounds: {
-//             north: 34.05056,
-//             south: 33.995416,
-//             east: -118.443517,
-//             west: -118.517415
-//           }
-//         });
+      function changeRadius() {
+        heatmap.set('radius', heatmap.get('radius') ? null : 20);
+      }
 
-//         // Add the circle for this city to the map.
-//         var cityCircle = new google.maps.Circle({
-//           strokeColor: '#FF0000',
-//           strokeOpacity: 0.8,
-//           strokeWeight: 2,
-//           fillColor: '#FF0000',
-//           fillOpacity: 0,
-//           map: map,
-//           center: {lat: 34.0231837184805, lng: -118.481569383702},
-//           radius: 5000
-//         });
+      function changeOpacity() {
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+      }
 
-//       }
+      function loadData(file_name, type) {
+        var items = [];
+        $.ajaxSetup({
+            async: false
+        });
 
-//       function toggleHeatmap() {
-//         heatmap.setMap(heatmap.getMap() ? null : map);
-//       }
-
-//       function changeGradient() {
-//         var gradient = [
-//         // "#ffffe0", "#f1f1da", "#e4e4d5", "#d6d6d0", "#c9c9cb", "#bbbbc6", "#aeaec1", "#a1a1bc", "#9393b7", "#8686b2", "#7878ad", "#6b6ba8", "#5d5da3", "#50509e", "#434399", "#353594", "#28288f", "#1a1a8a", "#0d0d85", "#000080"
-//           // 'rgba(0, 255, 255, 0)',
-//           // 'rgba(0, 255, 255, 1)',
-//           // 'rgba(0, 191, 255, 1)',
-//           // 'rgba(0, 127, 255, 1)',
-//           // 'rgba(0, 63, 255, 1)',
-//           // 'rgba(0, 0, 255, 1)',
-//           // 'rgba(0, 0, 223, 1)',
-//           // 'rgba(0, 0, 191, 1)',
-//           // 'rgba(0, 0, 159, 1)',
-//           // 'rgba(0, 0, 127, 1)',
-//           // 'rgba(63, 0, 91, 1)',
-//           // 'rgba(127, 0, 63, 1)',
-//           // 'rgba(191, 0, 31, 1)',
-//           // 'rgba(255, 0, 0, 1)'
-// 'rgba(0,0,0)'
-// ,'rgba(0,0,1)'
-// ,'rgba(0,0,2)'
-// ,'rgba(0,0,3)'
-// ,'rgba(0,0,4)'
-// ,'rgba(0,0,5)'
-// ,'rgba(0,0,6)'
-// ,'rgba(0,0,7)'
-// ,'rgba(0,0,8)'
-// ,'rgba(0,0,9)'
-// ,'rgba(0,0,10)'
-// ,'rgba(0,0,11)'
-// ,'rgba(0,0,12)'
-// ,'rgba(0,0,13)'
-// ,'rgba(0,0,14)'
-// ,'rgba(0,0,15)'
-// ,'rgba(0,0,16)'
-// ,'rgba(0,0,17)'
-// ,'rgba(0,0,18)'
-// ,'rgba(0,0,19) '
-//         ]
-//         heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-//       }
-
-//       function changeRadius() {
-//         heatmap.set('radius', heatmap.get('radius') ? null : 20);
-//       }
-
-//       function changeOpacity() {
-//         heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-//       }
-
-//       function loadData(file_name, type) {
-//         var items = [];
-//         $.getJSON(file_name, function(data) {
-//           if(type=='instagram') {
-//             $.each(data, function(index) {
-//               items.push(new google.maps.LatLng(data[index].location.latitude, data[index].location.longitude));
-//             });
-//           }
-//           else if(type=='twitter') {
-//             $.each(data, function(index) {
-//               items.push(new google.maps.LatLng(data[index].coordinates.coordinates[1], data[index].coordinates.coordinates[0]));
-//             });
-//           }
-//         });
-//         return items;
-//       }
-//       // Heatmap data: 500 Points
-//       function getPoints() {
-//         // return loadData('instagram_posts_dump_08_25_2016_06_47.json', 'instagram');
-//         return loadData('twitter_posts_dump_08_25_2016_06_49.json', 'twitter');
-//       }
-    </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWoIeLpnd3Wd-6R-BS5S0VMJxkYjv-csM&libraries=visualization&callback=initMap">
+        $.ajax({
+          url: file_name,
+          dataType: 'json',
+          async: false,
+          success: function(data) {
+            if(type=='instagram') {
+              $.each(data, function(index) {
+                items.push(new google.maps.LatLng(data[index].location.latitude, data[index].location.longitude));
+              });
+            }
+            else if(type=='twitter') {
+              $.each(data, function(index) {
+                items.push(new google.maps.LatLng(data[index].coordinates.coordinates[1], data[index].coordinates.coordinates[0]));
+              });
+            }
+          },
+          error: function(d){
+            // console.log(JSON.parse(d.responseText));
+          }
+        });
+        // $.ajax(url:file_name, function(data) {
+        // });
+        // console.log(items);
+        // console.log(items.map((e => [e.lat(), e.lng()])));
+        return items;
+      }
+      // Heatmap data: 500 Points
+      function getPoints() {
+        // return loadData('instagram_posts_dump_08_25_2016_06_47.json', 'instagram');
+        // return loadData('twitter_posts_dump_08_25_2016_06_49.json', 'twitter');
+        return loadData('twitter_posts_09_12_2016.json.n', 'twitter');
+      }
+      initMap();
     </script>
   </body>
 </html>
