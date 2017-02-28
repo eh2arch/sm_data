@@ -927,7 +927,7 @@ def plot_time_crime_social_data(db_name="twitter_posts", tract_flag=False, top_c
 			except:
 				continue
 		else:
-			data = pd.DataFrame(list(getattr(sys.modules[__name__], 'db_%s' % db_name).find(find_hash, {'timestamp_ms': 1, 'created_time': 1, 'arousal': 1, 'valence': 1})))#, 'created_time': 1, 'sentstrength_negative_sentiment': 1, 'sentstrength_positive_sentiment':1})))
+			data = pd.DataFrame(list(getattr(sys.modules[__name__], 'db_%s' % db_name).find(find_hash, {'timestamp_ms': 1, 'created_time': 1, 'arousal': 1, 'valence': 1}).limit(5000)))#, 'created_time': 1, 'sentstrength_negative_sentiment': 1, 'sentstrength_positive_sentiment':1})))
 			try:
 				data['Date Occurred'] = pd.to_datetime(data['created_time'].astype(int), unit='s').dt.tz_localize('UTC').dt.tz_convert('America/Los_Angeles').dt.date	
 			except:
@@ -1018,67 +1018,67 @@ def plot_time_crime_social_data(db_name="twitter_posts", tract_flag=False, top_c
 		crime_social_emotion_merge.set_index(['Date Occurred'], inplace=True)
 		ys = [['Crime Count'], ['Gang Crimes'], ['Posts Count'], ['valence'], ['arousal']]
 
-		# from itertools import cycle
-		# fig, ax = plt.subplots()
+		from itertools import cycle
+		fig, ax = plt.subplots()
 
-		# axes = [ax]
-		# for y in ys[1:]:
-		# 	# Twin the x-axis twice to make independent y-axes.
-		# 	axes.append(ax.twinx())
+		axes = [ax]
+		for y in ys[1:]:
+			# Twin the x-axis twice to make independent y-axes.
+			axes.append(ax.twinx())
 
-		# extra_ys =  len(axes[2:])
+		extra_ys =  len(axes[2:])
 
-		# # Make some space on the right side for the extra y-axes.
-		# if extra_ys>0:
-		# 	temp = 0.85
-		# 	if extra_ys<=2:
-		# 		temp = 0.75
-		# 	elif extra_ys<=6:
-		# 		temp = 0.6
-		# 	if extra_ys>10:
-		# 		print 'you are being ridiculous'
-		# 	fig.subplots_adjust(right=temp)
-		# 	right_additive = (0.98-temp)/float(extra_ys)
-		# # Move the last y-axis spine over to the right by x% of the width of the axes
-		# i = 1.
-		# for ax in axes[2:]:
-		# 	ax.spines['right'].set_position(('axes', 1.+right_additive*i))
-		# 	ax.set_frame_on(True)
-		# 	ax.patch.set_visible(False)
-		# 	ax.yaxis.set_major_formatter(matplotlib.ticker.OldScalarFormatter())
-		# 	i +=1.
+		# Make some space on the right side for the extra y-axes.
+		if extra_ys>0:
+			temp = 0.85
+			if extra_ys<=2:
+				temp = 0.75
+			elif extra_ys<=6:
+				temp = 0.6
+			if extra_ys>10:
+				print 'you are being ridiculous'
+			fig.subplots_adjust(right=temp)
+			right_additive = (0.98-temp)/float(extra_ys)
+		# Move the last y-axis spine over to the right by x% of the width of the axes
+		i = 1.
+		for ax in axes[2:]:
+			ax.spines['right'].set_position(('axes', 1.+right_additive*i))
+			ax.set_frame_on(True)
+			ax.patch.set_visible(False)
+			ax.yaxis.set_major_formatter(matplotlib.ticker.OldScalarFormatter())
+			i +=1.
 		# To make the border of the right-most axis visible, we need to turn the frame
 		# on. This hides the other plots, however, so we need to turn its fill off.
 
-		# cols = []
-		# lines = []
-		# line_styles = cycle(['-','-','-', '--', '-.', ':', '.', ',', 'o', 'v', '^', '<', '>',
-		# 		   '1', '2', '3', '4', 's', 'p', '*', 'h', 'H', '+', 'x', 'D', 'd', '|', '_'])
-		# colors = cycle(matplotlib.rcParams['axes.color_cycle'])
-		# for ax,y in zip(axes,ys):
-		# 	ls=line_styles.next()
-		# 	if len(y)==1:
-		# 		col = y[0]
-		# 		cols.append(col)
-		# 		color = colors.next()
-		# 		lines.append(ax.plot(crime_social_emotion_merge[col],linestyle =ls,label = col,color=color))
-		# 		ax.set_ylabel(col,color=color)
-		# 		ax.tick_params(axis='y', colors=color)
-		# 		ax.spines['right'].set_color(color)
-		# 	else:
-		# 		for col in y:
-		# 			color = colors.next()
-		# 			lines.append(ax.plot(crime_social_emotion_merge[col],linestyle =ls,label = col,color=color))
-		# 			cols.append(col)
-		# 		ax.set_ylabel(', '.join(y))
-		# 		ax.tick_params(axis='y')
-		# axes[0].set_xlabel(crime_social_emotion_merge.index.name)
-		# lns = lines[0]
-		# for l in lines[1:]:
-		# 	lns +=l
-		# labs = [l.get_label() for l in lns]
-		# axes[0].legend(lns, labs, loc=0)
-		for idx, y in enumerate(ys):
+		cols = []
+		lines = []
+		line_styles = cycle(['-','-','-', '--', '-.', ':', '.', ',', 'o', 'v', '^', '<', '>',
+				   '1', '2', '3', '4', 's', 'p', '*', 'h', 'H', '+', 'x', 'D', 'd', '|', '_'])
+		colors = cycle(matplotlib.rcParams['axes.color_cycle'])
+		for ax,y in zip(axes,ys):
+			ls=line_styles.next()
+			if len(y)==1:
+				col = y[0]
+				cols.append(col)
+				color = colors.next()
+				lines.append(ax.plot(crime_social_emotion_merge[col],linestyle =ls,label = col,color=color))
+				ax.set_ylabel(col,color=color)
+				ax.tick_params(axis='y', colors=color)
+				ax.spines['right'].set_color(color)
+			else:
+				for col in y:
+					color = colors.next()
+					lines.append(ax.plot(crime_social_emotion_merge[col],linestyle =ls,label = col,color=color))
+					cols.append(col)
+				ax.set_ylabel(', '.join(y))
+				ax.tick_params(axis='y')
+		axes[0].set_xlabel(crime_social_emotion_merge.index.name)
+		lns = lines[0]
+		for l in lines[1:]:
+			lns +=l
+		labs = [l.get_label() for l in lns]
+		axes[0].legend(lns, labs, loc=0)
+		# for idx, y in enumerate(ys):
 			# print crime_social_emotion_merge[['Crime Count']]
 			# print crime_social_emotion_merge[y]
 			# print '----BEGIN----'
@@ -1086,42 +1086,42 @@ def plot_time_crime_social_data(db_name="twitter_posts", tract_flag=False, top_c
 			# plot_acf(crime_social_emotion_merge[y], use_vlines = True, alpha = 0.05)#, unbiased = True)
 			# plt.savefig('%s 1 day AutoCorrelations %s v %s TopCrimes Gang' % (db_name, y[0], y[0]))
 			# plt.show()
-			plt.clf()
-			ax=None
-			for idx_corr, corr_y in enumerate(ys):
-				# print '--Var--'
-				# print '%s vs %s' % (y[0], corr_y[0])
-				# lag_auto_correlations = [crosscorr(crime_social_emotion_merge[y[0]], crime_social_emotion_merge[y[0]], i) for i in range(1, 7)]				
-				# print max(lag_auto_correlations)
-				# print lag_auto_correlations.index(max(lag_auto_correlations)) + 1
-				lag_auto_correlations = []
-				start_val = 0
-				if idx_corr == idx:
-					start_val = 1
-				for i in range(start_val, 7):
-					crime_social_emotion_merge_copy = crime_social_emotion_merge.copy(deep=True)
-					crime_social_emotion_merge_copy['y_%s_%s' % (idx, idx_corr)] = crime_social_emotion_merge_copy[corr_y].shift(i)
-					crime_social_emotion_merge_copy.dropna(inplace=True)
-					# print crime_social_emotion_merge_copy
-					# shifted_data.dropna(inplace=True)
-					# r = pd.DataFrame([crime_social_emotion_merge_copy['Crime Count'], shifted_data])
-					# r.dropna(inplace=True)
-					# lag_auto_correlations.append(st.pearsonr(crime_social_emotion_merge_copy[y], crime_social_emotion_merge_copy[['y_%s_%s' % (idx, idx_corr)]]))
-				# print st.pearsonr(crime_social_emotion_merge_copy[y], crime_social_emotion_merge_copy[y].shift(1))
-				# print lag_auto_correlations
-				# print '--Max Correlation--'
-				# max_corr_idx = [abs(x[0]) for x in lag_auto_correlations].index(max([abs(x[0]) for x in lag_auto_correlations]))
-				# print lag_auto_correlations[max_corr_idx]
-				# print 'Lag: %s' % (max_corr_idx + start_val)
-				# print '\n'
-				# print '--Min P-Value--'
-				# min_pval_idx = [x[1] for x in lag_auto_correlations].index(min([x[1] for x in lag_auto_correlations]))
-				# print lag_auto_correlations[min_pval_idx]
-				# print 'Lag: %s' % (min_pval_idx + start_val)
-				ax=crosscorrelation_plot(crime_social_emotion_merge_copy[y[0]], crime_social_emotion_merge_copy[corr_y[0]], y[0], corr_y[0])
-				# plt.savefig('%s 1 day Correlations %s v %s TopCrimes Gang' % (db_name, y[0], corr_y[0]))
-				# plt.clf()
-			plt.savefig('%s 1 day Correlations %s TopCrimes Gang' % (db_name, y[0]))
+			# plt.clf()
+			# ax=None
+			# for idx_corr, corr_y in enumerate(ys):
+			# 	# print '--Var--'
+			# 	# print '%s vs %s' % (y[0], corr_y[0])
+			# 	# lag_auto_correlations = [crosscorr(crime_social_emotion_merge[y[0]], crime_social_emotion_merge[y[0]], i) for i in range(1, 7)]				
+			# 	# print max(lag_auto_correlations)
+			# 	# print lag_auto_correlations.index(max(lag_auto_correlations)) + 1
+			# 	lag_auto_correlations = []
+			# 	start_val = 0
+			# 	if idx_corr == idx:
+			# 		start_val = 1
+			# 	for i in range(start_val, 7):
+			# 		crime_social_emotion_merge_copy = crime_social_emotion_merge.copy(deep=True)
+			# 		crime_social_emotion_merge_copy['y_%s_%s' % (idx, idx_corr)] = crime_social_emotion_merge_copy[corr_y].shift(i)
+			# 		crime_social_emotion_merge_copy.dropna(inplace=True)
+			# 		# print crime_social_emotion_merge_copy
+			# 		# shifted_data.dropna(inplace=True)
+			# 		# r = pd.DataFrame([crime_social_emotion_merge_copy['Crime Count'], shifted_data])
+			# 		# r.dropna(inplace=True)
+			# 		# lag_auto_correlations.append(st.pearsonr(crime_social_emotion_merge_copy[y], crime_social_emotion_merge_copy[['y_%s_%s' % (idx, idx_corr)]]))
+			# 	# print st.pearsonr(crime_social_emotion_merge_copy[y], crime_social_emotion_merge_copy[y].shift(1))
+			# 	# print lag_auto_correlations
+			# 	# print '--Max Correlation--'
+			# 	# max_corr_idx = [abs(x[0]) for x in lag_auto_correlations].index(max([abs(x[0]) for x in lag_auto_correlations]))
+			# 	# print lag_auto_correlations[max_corr_idx]
+			# 	# print 'Lag: %s' % (max_corr_idx + start_val)
+			# 	# print '\n'
+			# 	# print '--Min P-Value--'
+			# 	# min_pval_idx = [x[1] for x in lag_auto_correlations].index(min([x[1] for x in lag_auto_correlations]))
+			# 	# print lag_auto_correlations[min_pval_idx]
+			# 	# print 'Lag: %s' % (min_pval_idx + start_val)
+			# 	ax=crosscorrelation_plot(crime_social_emotion_merge_copy[y[0]], crime_social_emotion_merge_copy[corr_y[0]], y[0], corr_y[0])
+			# 	# plt.savefig('%s 1 day Correlations %s v %s TopCrimes Gang' % (db_name, y[0], corr_y[0]))
+			# 	# plt.clf()
+			# plt.savefig('%s 1 day Correlations %s TopCrimes Gang' % (db_name, y[0]))
 			# plt.show()	
 			# print '-----END-----'
 			# p_val = st.pearsonr(crime_social_emotion_merge[['Gang Crimes']], crime_social_emotion_merge[y])			
@@ -1134,11 +1134,12 @@ def plot_time_crime_social_data(db_name="twitter_posts", tract_flag=False, top_c
 		# ax.plot(crime_social_emotion_merge['Date Occurred'], crime_social_emotion_merge['arousal'])
 		
 		# fig.tight_layout()
-		# if tract_flag:
-		# 	plt.savefig('Tract %s, %s Time Series of Crime, Social Media Count and Sentiment Variables for SM CI TopCrimes Gang' % (tract_no, db_name))
-		# else:
-		# 	plt.savefig('%s Time Series of Crime, Social Media Count and Sentiment Variables for SM CI TopCrimes Gang' % (db_name))
-		
+		if tract_flag:
+			plt.savefig('Tract %s, %s Time Series of Crime, Social Media Count and Sentiment Variables for SM CI TopCrimes Gang' % (tract_no, db_name))
+		else:
+			plt.savefig('%s Time Series of Crime, Social Media Count and Sentiment Variables for SM CI TopCrimes Gang' % (db_name))
+		# plt.show()
+
 		# crosscorrelation_plot(crime_social_emotion_merge['arousal'], crime_social_emotion_merge['Crime Count'])
 		# xcorr(crime_social_emotion_merge['arousal'].values, crime_social_emotion_merge['valence'].values, usevlines=True, maxlags=50)
 		# plot_acf(crime_social_emotion_merge[['valence']], use_vlines = True, alpha = 0.05)#, unbiased = True)
