@@ -2,9 +2,9 @@ from pymongo import MongoClient
 import random
 
 db_client = MongoClient()
-db_object = db_client.isi_santa_monica_09_12_2016
+db_object = db_client.isi_santa_monica_11_07_2016
 
-def collection(collection_name):
+def  collection(collection_name):
 	return db_object[str(collection_name)]
 
 def get_random_record(collection_object):

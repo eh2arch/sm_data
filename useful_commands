@@ -144,3 +144,20 @@ Error:
 ValueError: shapefile must have lat/lon vertices  - it looks like this one has vertices
 in map projection coordinates. You can convert the shapefile to geographic
 coordinates using the shpproj utility from the sha
+
+
+
+
+Topic modelling wrt positive/negative
+
+
+
+
+Twitter Posts
+Count: 4749846
+
+Instagram Posts
+Count: 820508
+
+Instagram Comments
+Count: 637009

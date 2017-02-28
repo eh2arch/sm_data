@@ -1,0 +1,1357 @@
+3 days rolling average
+larger bins - 3 day bins
+lagged correlation
+
+screenshots, gang related, household size
+
+3 day bins with crime distinctions cumulative take the max of the tracts
+
+            UCR Description   UCR
+1    Larceny - From Vehicle   640
+3                 Vandalism  1400
+4                     Fraud  1100
+10          Larceny - Other   690
+13           Simple Assault   450
+17       Larceny - Shoplift   630
+19  Larceny - From Building   670
+28        Larceny - Bicycle   660
+39      Public Intoxication  2300
+43        Contempt of Court  2606
+
+
+gang related
+
+Periodicity:
+
+Instagram
+Crime Count -	1
+Gang Crimes -	1
+Posts Count	-	1
+Valence	-		1
+Arousal	-		1
+
+Twitter
+Valence - 3
+
+
+
+ALLWAY
+
+3-DAY
+IG
+----BEGIN----
+Crime Count
+--Var--
+Crime Count vs Crime Count
+--Max Correlation--
+(array([ 0.80216354]), array([  1.65848460e-20]))
+Lag: 1
+--Min P-Value--
+(array([ 0.80216354]), array([  1.65848460e-20]))
+Lag: 1
+--Var--
+Crime Count vs Gang Crimes
+--Max Correlation--
+(array([-0.29384006]), array([ 0.00634316]))
+Lag: 2
+--Min P-Value--
+(array([-0.29384006]), array([ 0.00634316]))
+Lag: 2
+--Var--
+Crime Count vs Posts Count
+--Max Correlation--
+(array([ 0.42330598]), array([  4.40731829e-05]))
+Lag: 0
+--Min P-Value--
+(array([ 0.42330598]), array([  4.40731829e-05]))
+Lag: 0
+--Var--
+Crime Count vs valence
+--Max Correlation--
+(array([ 0.30213741]), array([ 0.00445257]))
+Lag: 0
+--Min P-Value--
+(array([ 0.30213741]), array([ 0.00445257]))
+Lag: 0
+--Var--
+Crime Count vs arousal
+--Max Correlation--
+(array([ 0.47449061]), array([  7.63773782e-06]))
+Lag: 6
+--Min P-Value--
+(array([ 0.47449061]), array([  7.63773782e-06]))
+Lag: 6
+-----END-----
+----BEGIN----
+Gang Crimes
+--Var--
+Gang Crimes vs Crime Count
+--Max Correlation--
+(array([-0.18877525]), array([ 0.07993007]))
+Lag: 0
+--Min P-Value--
+(array([-0.18877525]), array([ 0.07993007]))
+Lag: 0
+--Var--
+Gang Crimes vs Gang Crimes
+--Max Correlation--
+(array([ 0.72895114]), array([  1.76333545e-15]))
+Lag: 1
+--Min P-Value--
+(array([ 0.72895114]), array([  1.76333545e-15]))
+Lag: 1
+--Var--
+Gang Crimes vs Posts Count
+--Max Correlation--
+(array([-0.20552425]), array([ 0.06397449]))
+Lag: 5
+--Min P-Value--
+(array([-0.20552425]), array([ 0.06397449]))
+Lag: 5
+--Var--
+Gang Crimes vs valence
+--Max Correlation--
+(array([-0.34476486]), array([ 0.00107504]))
+Lag: 0
+--Min P-Value--
+(array([-0.34476486]), array([ 0.00107504]))
+Lag: 0
+--Var--
+Gang Crimes vs arousal
+--Max Correlation--
+(array([-0.53804173]), array([  1.55644525e-07]))
+Lag: 4
+--Min P-Value--
+(array([-0.53804173]), array([  1.55644525e-07]))
+Lag: 4
+-----END-----
+----BEGIN----
+Posts Count
+--Var--
+Posts Count vs Crime Count
+--Max Correlation--
+(array([ 0.50194956]), array([  8.49083739e-07]))
+Lag: 1
+--Min P-Value--
+(array([ 0.50194956]), array([  8.49083739e-07]))
+Lag: 1
+--Var--
+Posts Count vs Gang Crimes
+--Max Correlation--
+(array([-0.38116836]), array([ 0.00031939]))
+Lag: 2
+--Min P-Value--
+(array([-0.38116836]), array([ 0.00031939]))
+Lag: 2
+--Var--
+Posts Count vs Posts Count
+--Max Correlation--
+(array([ 0.68447833]), array([  3.70140505e-13]))
+Lag: 1
+--Min P-Value--
+(array([ 0.68447833]), array([  3.70140505e-13]))
+Lag: 1
+--Var--
+Posts Count vs valence
+--Max Correlation--
+(array([ 0.74840701]), array([  7.94279294e-17]))
+Lag: 0
+--Min P-Value--
+(array([ 0.74840701]), array([  7.94279294e-17]))
+Lag: 0
+--Var--
+Posts Count vs arousal
+--Max Correlation--
+(array([ 0.47444104]), array([  7.65680158e-06]))
+Lag: 6
+--Min P-Value--
+(array([ 0.47444104]), array([  7.65680158e-06]))
+Lag: 6
+-----END-----
+----BEGIN----
+valence
+--Var--
+valence vs Crime Count
+--Max Correlation--
+(array([ 0.50399361]), array([  7.53561138e-07]))
+Lag: 1
+--Min P-Value--
+(array([ 0.50399361]), array([  7.53561138e-07]))
+Lag: 1
+--Var--
+valence vs Gang Crimes
+--Max Correlation--
+(array([-0.45276691]), array([  1.35681268e-05]))
+Lag: 2
+--Min P-Value--
+(array([-0.45276691]), array([  1.35681268e-05]))
+Lag: 2
+--Var--
+valence vs Posts Count
+--Max Correlation--
+(array([ 0.74840701]), array([  7.94279294e-17]))
+Lag: 0
+--Min P-Value--
+(array([ 0.74840701]), array([  7.94279294e-17]))
+Lag: 0
+--Var--
+valence vs valence
+--Max Correlation--
+(array([ 0.79344146]), array([  8.37036946e-20]))
+Lag: 1
+--Min P-Value--
+(array([ 0.79344146]), array([  8.37036946e-20]))
+Lag: 1
+--Var--
+valence vs arousal
+--Max Correlation--
+(array([ 0.49582659]), array([  2.51760573e-06]))
+Lag: 6
+--Min P-Value--
+(array([ 0.49582659]), array([  2.51760573e-06]))
+Lag: 6
+-----END-----
+----BEGIN----
+arousal
+--Var--
+arousal vs Crime Count
+--Max Correlation--
+(array([ 0.33166622]), array([ 0.00192993]))
+Lag: 2
+--Min P-Value--
+(array([ 0.33166622]), array([ 0.00192993]))
+Lag: 2
+--Var--
+arousal vs Gang Crimes
+--Max Correlation--
+(array([ 0.2614338]), array([ 0.01839883]))
+Lag: 6
+--Min P-Value--
+(array([ 0.2614338]), array([ 0.01839883]))
+Lag: 6
+--Var--
+arousal vs Posts Count
+--Max Correlation--
+(array([ 0.15054658]), array([ 0.16648657]))
+Lag: 1
+--Min P-Value--
+(array([ 0.15054658]), array([ 0.16648657]))
+Lag: 1
+--Var--
+arousal vs valence
+--Max Correlation--
+(array([ 0.15733377]), array([ 0.16069182]))
+Lag: 6
+--Min P-Value--
+(array([ 0.15733377]), array([ 0.16069182]))
+Lag: 6
+--Var--
+arousal vs arousal
+--Max Correlation--
+(array([ 0.65739619]), array([  6.18662648e-12]))
+Lag: 1
+--Min P-Value--
+(array([ 0.65739619]), array([  6.18662648e-12]))
+Lag: 1
+-----END-----
+
+
+Twitter
+----BEGIN----
+Crime Count
+--Var--
+Crime Count vs Crime Count
+--Max Correlation--
+(array([ 0.72943409]), array([  2.60528092e-11]))
+Lag: 1
+--Min P-Value--
+(array([ 0.72943409]), array([  2.60528092e-11]))
+Lag: 1
+--Var--
+Crime Count vs Gang Crimes
+--Max Correlation--
+(array([ 0.41832992]), array([ 0.00120267]))
+Lag: 5
+--Min P-Value--
+(array([ 0.41832992]), array([ 0.00120267]))
+Lag: 5
+--Var--
+Crime Count vs Posts Count
+--Max Correlation--
+(array([ 0.42445047]), array([ 0.00058555]))
+Lag: 0
+--Min P-Value--
+(array([ 0.42445047]), array([ 0.00058555]))
+Lag: 0
+--Var--
+Crime Count vs valence
+--Max Correlation--
+(array([ 0.32490156]), array([ 0.00997985]))
+Lag: 0
+--Min P-Value--
+(array([ 0.32490156]), array([ 0.00997985]))
+Lag: 0
+--Var--
+Crime Count vs arousal
+--Max Correlation--
+(array([-0.46649804]), array([ 0.00013255]))
+Lag: 0
+--Min P-Value--
+(array([-0.46649804]), array([ 0.00013255]))
+Lag: 0
+-----END-----
+----BEGIN----
+Gang Crimes
+--Var--
+Gang Crimes vs Crime Count
+--Max Correlation--
+(array([-0.46600235]), array([ 0.00029511]))
+Lag: 6
+--Min P-Value--
+(array([-0.46600235]), array([ 0.00029511]))
+Lag: 6
+--Var--
+Gang Crimes vs Gang Crimes
+--Max Correlation--
+(array([ 0.69604887]), array([  4.74128367e-10]))
+Lag: 1
+--Min P-Value--
+(array([ 0.69604887]), array([  4.74128367e-10]))
+Lag: 1
+--Var--
+Gang Crimes vs Posts Count
+--Max Correlation--
+(array([-0.64341353]), array([  8.88136120e-08]))
+Lag: 6
+--Min P-Value--
+(array([-0.64341353]), array([  8.88136120e-08]))
+Lag: 6
+--Var--
+Gang Crimes vs valence
+--Max Correlation--
+(array([-0.28814706]), array([ 0.0297354]))
+Lag: 5
+--Min P-Value--
+(array([-0.28814706]), array([ 0.0297354]))
+Lag: 5
+--Var--
+Gang Crimes vs arousal
+--Max Correlation--
+(array([ 0.5034166]), array([  6.56387275e-05]))
+Lag: 5
+--Min P-Value--
+(array([ 0.5034166]), array([  6.56387275e-05]))
+Lag: 5
+-----END-----
+----BEGIN----
+Posts Count
+--Var--
+Posts Count vs Crime Count
+--Max Correlation--
+(array([ 0.42445047]), array([ 0.00058555]))
+Lag: 0
+--Min P-Value--
+(array([ 0.42445047]), array([ 0.00058555]))
+Lag: 0
+--Var--
+Posts Count vs Gang Crimes
+--Max Correlation--
+(array([ 0.21784133]), array([ 0.09451597]))
+Lag: 2
+--Min P-Value--
+(array([ 0.21784133]), array([ 0.09451597]))
+Lag: 2
+--Var--
+Posts Count vs Posts Count
+--Max Correlation--
+(array([ 0.69585543]), array([  4.81613954e-10]))
+Lag: 1
+--Min P-Value--
+(array([ 0.69585543]), array([  4.81613954e-10]))
+Lag: 1
+--Var--
+Posts Count vs valence
+--Max Correlation--
+(array([ 0.43419448]), array([ 0.00042206]))
+Lag: 0
+--Min P-Value--
+(array([ 0.43419448]), array([ 0.00042206]))
+Lag: 0
+--Var--
+Posts Count vs arousal
+--Max Correlation--
+(array([-0.48305983]), array([  6.98879030e-05]))
+Lag: 0
+--Min P-Value--
+(array([-0.48305983]), array([  6.98879030e-05]))
+Lag: 0
+-----END-----
+----BEGIN----
+valence
+--Var--
+valence vs Crime Count
+--Max Correlation--
+(array([ 0.47149959]), array([ 0.00012526]))
+Lag: 1
+--Min P-Value--
+(array([ 0.47149959]), array([ 0.00012526]))
+Lag: 1
+--Var--
+valence vs Gang Crimes
+--Max Correlation--
+(array([ 0.31022174]), array([ 0.0188493]))
+Lag: 5
+--Min P-Value--
+(array([ 0.31022174]), array([ 0.0188493]))
+Lag: 5
+--Var--
+valence vs Posts Count
+--Max Correlation--
+(array([ 0.45738168]), array([ 0.0002107]))
+Lag: 1
+--Min P-Value--
+(array([ 0.45738168]), array([ 0.0002107]))
+Lag: 1
+--Var--
+valence vs valence
+--Max Correlation--
+(array([-0.6169349]), array([  1.95701163e-07]))
+Lag: 3
+--Min P-Value--
+(array([-0.6169349]), array([  1.95701163e-07]))
+Lag: 3
+--Var--
+valence vs arousal
+--Max Correlation--
+(array([ 0.3999082]), array([ 0.00186953]))
+Lag: 4
+--Min P-Value--
+(array([ 0.3999082]), array([ 0.00186953]))
+Lag: 4
+-----END-----
+----BEGIN----
+arousal
+--Var--
+arousal vs Crime Count
+--Max Correlation--
+(array([-0.5899117]), array([  5.64680014e-07]))
+Lag: 1
+--Min P-Value--
+(array([-0.5899117]), array([  5.64680014e-07]))
+Lag: 1
+--Var--
+arousal vs Gang Crimes
+--Max Correlation--
+(array([ 0.31022003]), array([ 0.01413425]))
+Lag: 0
+--Min P-Value--
+(array([ 0.31022003]), array([ 0.01413425]))
+Lag: 0
+--Var--
+arousal vs Posts Count
+--Max Correlation--
+(array([-0.48305983]), array([  6.98879030e-05]))
+Lag: 0
+--Min P-Value--
+(array([-0.48305983]), array([  6.98879030e-05]))
+Lag: 0
+--Var--
+arousal vs valence
+--Max Correlation--
+(array([-0.4907766]), array([ 0.00012295]))
+Lag: 6
+--Min P-Value--
+(array([-0.4907766]), array([ 0.00012295]))
+Lag: 6
+--Var--
+arousal vs arousal
+--Max Correlation--
+(array([ 0.70143371]), array([  3.05042852e-10]))
+Lag: 1
+--Min P-Value--
+(array([ 0.70143371]), array([  3.05042852e-10]))
+Lag: 1
+-----END-----
+
+
+
+1-DAY
+IG
+----BEGIN----
+Crime Count
+--Var--
+Crime Count vs Crime Count
+--Max Correlation--
+(array([ 0.21039792]), array([ 0.05938773]))
+Lag: 6
+--Min P-Value--
+(array([ 0.20853001]), array([ 0.05696811]))
+Lag: 3
+--Var--
+Crime Count vs Gang Crimes
+--Max Correlation--
+(array([-0.21087471]), array([ 0.05271764]))
+Lag: 2
+--Min P-Value--
+(array([-0.21087471]), array([ 0.05271764]))
+Lag: 2
+--Var--
+Crime Count vs Posts Count
+--Max Correlation--
+(array([ 0.27107713]), array([ 0.01376515]))
+Lag: 5
+--Min P-Value--
+(array([ 0.27107713]), array([ 0.01376515]))
+Lag: 5
+--Var--
+Crime Count vs valence
+--Max Correlation--
+(array([ 0.28203056]), array([ 0.01074664]))
+Lag: 6
+--Min P-Value--
+(array([ 0.28203056]), array([ 0.01074664]))
+Lag: 6
+--Var--
+Crime Count vs arousal
+--Max Correlation--
+(array([ 0.39131475]), array([ 0.00030353]))
+Lag: 6
+--Min P-Value--
+(array([ 0.39131475]), array([ 0.00030353]))
+Lag: 6
+-----END-----
+----BEGIN----
+Gang Crimes
+--Var--
+Gang Crimes vs Crime Count
+--Max Correlation--
+(array([-0.09531442]), array([ 0.39432513]))
+Lag: 5
+--Min P-Value--
+(array([-0.09531442]), array([ 0.39432513]))
+Lag: 5
+--Var--
+Gang Crimes vs Gang Crimes
+--Max Correlation--
+(array([ 0.1595665]), array([ 0.14223296]))
+Lag: 1
+--Min P-Value--
+(array([ 0.1595665]), array([ 0.14223296]))
+Lag: 1
+--Var--
+Gang Crimes vs Posts Count
+--Max Correlation--
+(array([-0.26650952]), array([ 0.0155101]))
+Lag: 5
+--Min P-Value--
+(array([-0.26650952]), array([ 0.0155101]))
+Lag: 5
+--Var--
+Gang Crimes vs valence
+--Max Correlation--
+(array([-0.22141077]), array([ 0.04560132]))
+Lag: 5
+--Min P-Value--
+(array([-0.22141077]), array([ 0.04560132]))
+Lag: 5
+--Var--
+Gang Crimes vs arousal
+--Max Correlation--
+(array([-0.35942121]), array([ 0.00084664]))
+Lag: 4
+--Min P-Value--
+(array([-0.35942121]), array([ 0.00084664]))
+Lag: 4
+-----END-----
+----BEGIN----
+Posts Count
+--Var--
+Posts Count vs Crime Count
+--Max Correlation--
+(array([ 0.38641492]), array([ 0.00023799]))
+Lag: 1
+--Min P-Value--
+(array([ 0.38641492]), array([ 0.00023799]))
+Lag: 1
+--Var--
+Posts Count vs Gang Crimes
+--Max Correlation--
+(array([-0.33211538]), array([ 0.0019011]))
+Lag: 2
+--Min P-Value--
+(array([-0.33211538]), array([ 0.0019011]))
+Lag: 2
+--Var--
+Posts Count vs Posts Count
+--Max Correlation--
+(array([ 0.29251512]), array([ 0.00805043]))
+Lag: 6
+--Min P-Value--
+(array([ 0.29251512]), array([ 0.00805043]))
+Lag: 6
+--Var--
+Posts Count vs valence
+--Max Correlation--
+(array([ 0.69594082]), array([  7.30954578e-14]))
+Lag: 0
+--Min P-Value--
+(array([ 0.69594082]), array([  7.30954578e-14]))
+Lag: 0
+--Var--
+Posts Count vs arousal
+--Max Correlation--
+(array([ 0.5334047]), array([  2.94234039e-07]))
+Lag: 6
+--Min P-Value--
+(array([ 0.5334047]), array([  2.94234039e-07]))
+Lag: 6
+-----END-----
+----BEGIN----
+valence
+--Var--
+valence vs Crime Count
+--Max Correlation--
+(array([ 0.41517512]), array([  7.04359736e-05]))
+Lag: 1
+--Min P-Value--
+(array([ 0.41517512]), array([  7.04359736e-05]))
+Lag: 1
+--Var--
+valence vs Gang Crimes
+--Max Correlation--
+(array([-0.290924]), array([ 0.00690971]))
+Lag: 2
+--Min P-Value--
+(array([-0.290924]), array([ 0.00690971]))
+Lag: 2
+--Var--
+valence vs Posts Count
+--Max Correlation--
+(array([ 0.69594082]), array([  7.30954578e-14]))
+Lag: 0
+--Min P-Value--
+(array([ 0.69594082]), array([  7.30954578e-14]))
+Lag: 0
+--Var--
+valence vs valence
+--Max Correlation--
+(array([ 0.39463102]), array([ 0.00026675]))
+Lag: 6
+--Min P-Value--
+(array([ 0.39463102]), array([ 0.00026675]))
+Lag: 6
+--Var--
+valence vs arousal
+--Max Correlation--
+(array([ 0.44562263]), array([  1.52334517e-05]))
+Lag: 0
+--Min P-Value--
+(array([ 0.44562263]), array([  1.52334517e-05]))
+Lag: 0
+-----END-----
+----BEGIN----
+arousal
+--Var--
+arousal vs Crime Count
+--Max Correlation--
+(array([ 0.29834456]), array([ 0.00526933]))
+Lag: 1
+--Min P-Value--
+(array([ 0.29834456]), array([ 0.00526933]))
+Lag: 1
+--Var--
+arousal vs Gang Crimes
+--Max Correlation--
+(array([ 0.29556386]), array([ 0.00738728]))
+Lag: 6
+--Min P-Value--
+(array([ 0.29556386]), array([ 0.00738728]))
+Lag: 6
+--Var--
+arousal vs Posts Count
+--Max Correlation--
+(array([ 0.37317283]), array([ 0.00037101]))
+Lag: 0
+--Min P-Value--
+(array([ 0.37317283]), array([ 0.00037101]))
+Lag: 0
+--Var--
+arousal vs valence
+--Max Correlation--
+(array([ 0.44562263]), array([  1.52334517e-05]))
+Lag: 0
+--Min P-Value--
+(array([ 0.44562263]), array([  1.52334517e-05]))
+Lag: 0
+--Var--
+arousal vs arousal
+--Max Correlation--
+(array([ 0.38036157]), array([ 0.00030327]))
+Lag: 1
+--Min P-Value--
+(array([ 0.38036157]), array([ 0.00030327]))
+Lag: 1
+-----END-----
+
+
+
+Twitter
+----BEGIN----
+Crime Count
+--Var--
+Crime Count vs Crime Count
+--Max Correlation--
+(array([-0.12424527]), array([ 0.34007622]))
+Lag: 2
+--Min P-Value--
+(array([-0.12424527]), array([ 0.34007622]))
+Lag: 2
+--Var--
+Crime Count vs Gang Crimes
+--Max Correlation--
+(array([ 0.18651484]), array([ 0.15723256]))
+Lag: 4
+--Min P-Value--
+(array([ 0.18651484]), array([ 0.15723256]))
+Lag: 4
+--Var--
+Crime Count vs Posts Count
+--Max Correlation--
+(array([ 0.40198112]), array([ 0.00193822]))
+Lag: 6
+--Min P-Value--
+(array([ 0.40198112]), array([ 0.00193822]))
+Lag: 6
+--Var--
+Crime Count vs valence
+--Max Correlation--
+(array([ 0.4641844]), array([ 0.00027575]))
+Lag: 6
+--Min P-Value--
+(array([ 0.4641844]), array([ 0.00027575]))
+Lag: 6
+--Var--
+Crime Count vs arousal
+--Max Correlation--
+(array([ 0.22502697]), array([ 0.08122948]))
+Lag: 2
+--Min P-Value--
+(array([-0.22437904]), array([ 0.07707631]))
+Lag: 0
+-----END-----
+----BEGIN----
+Gang Crimes
+--Var--
+Gang Crimes vs Crime Count
+--Max Correlation--
+(array([-0.23725512]), array([ 0.06334849]))
+Lag: 1
+--Min P-Value--
+(array([-0.23725512]), array([ 0.06334849]))
+Lag: 1
+--Var--
+Gang Crimes vs Gang Crimes
+--Max Correlation--
+(array([ 0.13811788]), array([ 0.30555864]))
+Lag: 6
+--Min P-Value--
+(array([ 0.13811788]), array([ 0.30555864]))
+Lag: 6
+--Var--
+Gang Crimes vs Posts Count
+--Max Correlation--
+(array([-0.34737681]), array([ 0.00810805]))
+Lag: 6
+--Min P-Value--
+(array([-0.34737681]), array([ 0.00810805]))
+Lag: 6
+--Var--
+Gang Crimes vs valence
+--Max Correlation--
+(array([-0.21507655]), array([ 0.10494158]))
+Lag: 5
+--Min P-Value--
+(array([-0.21507655]), array([ 0.10494158]))
+Lag: 5
+--Var--
+Gang Crimes vs arousal
+--Max Correlation--
+(array([ 0.27601532]), array([ 0.02854879]))
+Lag: 0
+--Min P-Value--
+(array([ 0.27601532]), array([ 0.02854879]))
+Lag: 0
+-----END-----
+----BEGIN----
+Posts Count
+--Var--
+Posts Count vs Crime Count
+--Max Correlation--
+(array([ 0.27838257]), array([ 0.02715955]))
+Lag: 0
+--Min P-Value--
+(array([ 0.27838257]), array([ 0.02715955]))
+Lag: 0
+--Var--
+Posts Count vs Gang Crimes
+--Max Correlation--
+(array([ 0.16305852]), array([ 0.20925948]))
+Lag: 2
+--Min P-Value--
+(array([ 0.16305852]), array([ 0.20925948]))
+Lag: 2
+--Var--
+Posts Count vs Posts Count
+--Max Correlation--
+(array([ 0.12101225]), array([ 0.34880532]))
+Lag: 1
+--Min P-Value--
+(array([ 0.12101225]), array([ 0.34880532]))
+Lag: 1
+--Var--
+Posts Count vs valence
+--Max Correlation--
+(array([-0.359301]), array([ 0.00481132]))
+Lag: 3
+--Min P-Value--
+(array([-0.359301]), array([ 0.00481132]))
+Lag: 3
+--Var--
+Posts Count vs arousal
+--Max Correlation--
+(array([-0.33346915]), array([ 0.00756839]))
+Lag: 0
+--Min P-Value--
+(array([-0.33346915]), array([ 0.00756839]))
+Lag: 0
+-----END-----
+----BEGIN----
+valence
+--Var--
+valence vs Crime Count
+--Max Correlation--
+(array([ 0.36074359]), array([ 0.00397217]))
+Lag: 1
+--Min P-Value--
+(array([ 0.36074359]), array([ 0.00397217]))
+Lag: 1
+--Var--
+valence vs Gang Crimes
+--Max Correlation--
+(array([ 0.25986706]), array([ 0.05091816]))
+Lag: 6
+--Min P-Value--
+(array([ 0.25986706]), array([ 0.05091816]))
+Lag: 6
+--Var--
+valence vs Posts Count
+--Max Correlation--
+(array([ 0.33886979]), array([ 0.00659319]))
+Lag: 0
+--Min P-Value--
+(array([ 0.33886979]), array([ 0.00659319]))
+Lag: 0
+--Var--
+valence vs valence
+--Max Correlation--
+(array([-0.37855976]), array([ 0.00285919]))
+Lag: 3
+--Min P-Value--
+(array([-0.37855976]), array([ 0.00285919]))
+Lag: 3
+--Var--
+valence vs arousal
+--Max Correlation--
+(array([-0.20396277]), array([ 0.10884838]))
+Lag: 0
+--Min P-Value--
+(array([-0.20396277]), array([ 0.10884838]))
+Lag: 0
+-----END-----
+----BEGIN----
+arousal
+--Var--
+arousal vs Crime Count
+--Max Correlation--
+(array([-0.36678789]), array([ 0.00336511]))
+Lag: 1
+--Min P-Value--
+(array([-0.36678789]), array([ 0.00336511]))
+Lag: 1
+--Var--
+arousal vs Gang Crimes
+--Max Correlation--
+(array([ 0.27601532]), array([ 0.02854879]))
+Lag: 0
+--Min P-Value--
+(array([ 0.27601532]), array([ 0.02854879]))
+Lag: 0
+--Var--
+arousal vs Posts Count
+--Max Correlation--
+(array([-0.33346915]), array([ 0.00756839]))
+Lag: 0
+--Min P-Value--
+(array([-0.33346915]), array([ 0.00756839]))
+Lag: 0
+--Var--
+arousal vs valence
+--Max Correlation--
+(array([ 0.3018574]), array([ 0.02015297]))
+Lag: 4
+--Min P-Value--
+(array([ 0.3018574]), array([ 0.02015297]))
+Lag: 4
+--Var--
+arousal vs arousal
+--Max Correlation--
+(array([ 0.17704204]), array([ 0.18768441]))
+Lag: 6
+--Min P-Value--
+(array([ 0.17704204]), array([ 0.18768441]))
+Lag: 6
+-----END-----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3-DAY
+Instagram
+
+----BEGIN----
+Crime Count
+--Var--
+Crime Count vs Crime Count
+--Max Correlation--
+(array([ 0.80216354]), array([  1.65848460e-20]))
+Lag: 1
+--Min P-Value--
+(array([ 0.80216354]), array([  1.65848460e-20]))
+Lag: 1
+--Var--
+Crime Count vs Gang Crimes
+--Max Correlation--
+(array([-0.18877525]), array([ 0.07993007]))
+Lag: 0
+--Min P-Value--
+(array([-0.18877525]), array([ 0.07993007]))
+Lag: 0
+--Var--
+Crime Count vs Posts Count
+--Max Correlation--
+(array([ 0.50194956]), array([  8.49083739e-07]))
+Lag: 1
+--Min P-Value--
+(array([ 0.50194956]), array([  8.49083739e-07]))
+Lag: 1
+--Var--
+Crime Count vs valence
+--Max Correlation--
+(array([ 0.50399361]), array([  7.53561138e-07]))
+Lag: 1
+--Min P-Value--
+(array([ 0.50399361]), array([  7.53561138e-07]))
+Lag: 1
+--Var--
+Crime Count vs arousal
+--Max Correlation--
+(array([ 0.33166622]), array([ 0.00192993]))
+Lag: 2
+--Min P-Value--
+(array([ 0.33166622]), array([ 0.00192993]))
+Lag: 2
+-----END-----
+----BEGIN----
+Gang Crimes
+--Var--
+Gang Crimes vs Gang Crimes
+--Max Correlation--
+(array([ 0.72895114]), array([  1.76333545e-15]))
+Lag: 1
+--Min P-Value--
+(array([ 0.72895114]), array([  1.76333545e-15]))
+Lag: 1
+--Var--
+Gang Crimes vs Posts Count
+--Max Correlation--
+(array([-0.38116836]), array([ 0.00031939]))
+Lag: 2
+--Min P-Value--
+(array([-0.38116836]), array([ 0.00031939]))
+Lag: 2
+--Var--
+Gang Crimes vs valence
+--Max Correlation--
+(array([-0.45276691]), array([  1.35681268e-05]))
+Lag: 2
+--Min P-Value--
+(array([-0.45276691]), array([  1.35681268e-05]))
+Lag: 2
+--Var--
+Gang Crimes vs arousal
+--Max Correlation--
+(array([ 0.2614338]), array([ 0.01839883]))
+Lag: 6
+--Min P-Value--
+(array([ 0.2614338]), array([ 0.01839883]))
+Lag: 6
+-----END-----
+----BEGIN----
+Posts Count
+--Var--
+Posts Count vs Posts Count
+--Max Correlation--
+(array([ 0.68447833]), array([  3.70140505e-13]))
+Lag: 1
+--Min P-Value--
+(array([ 0.68447833]), array([  3.70140505e-13]))
+Lag: 1
+--Var--
+Posts Count vs valence
+--Max Correlation--
+(array([ 0.74840701]), array([  7.94279294e-17]))
+Lag: 0
+--Min P-Value--
+(array([ 0.74840701]), array([  7.94279294e-17]))
+Lag: 0
+--Var--
+Posts Count vs arousal
+--Max Correlation--
+(array([ 0.15054658]), array([ 0.16648657]))
+Lag: 1
+--Min P-Value--
+(array([ 0.15054658]), array([ 0.16648657]))
+Lag: 1
+-----END-----
+----BEGIN----
+valence
+--Var--
+valence vs valence
+--Max Correlation--
+(array([ 0.79344146]), array([  8.37036946e-20]))
+Lag: 1
+--Min P-Value--
+(array([ 0.79344146]), array([  8.37036946e-20]))
+Lag: 1
+--Var--
+valence vs arousal
+--Max Correlation--
+(array([ 0.15733377]), array([ 0.16069182]))
+Lag: 6
+--Min P-Value--
+(array([ 0.15733377]), array([ 0.16069182]))
+Lag: 6
+-----END-----
+----BEGIN----
+arousal
+--Var--
+arousal vs arousal
+--Max Correlation--
+(array([ 0.65739619]), array([  6.18662648e-12]))
+Lag: 1
+--Min P-Value--
+(array([ 0.65739619]), array([  6.18662648e-12]))
+Lag: 1
+-----END-----
+
+Twitter
+
+----BEGIN----
+Crime Count
+--Var--
+Crime Count vs Crime Count
+--Max Correlation--
+(array([ 0.72943409]), array([  2.60528092e-11]))
+Lag: 1
+--Min P-Value--
+(array([ 0.72943409]), array([  2.60528092e-11]))
+Lag: 1
+--Var--
+Crime Count vs Gang Crimes
+--Max Correlation--
+(array([-0.46600235]), array([ 0.00029511]))
+Lag: 6
+--Min P-Value--
+(array([-0.46600235]), array([ 0.00029511]))
+Lag: 6
+--Var--
+Crime Count vs Posts Count
+--Max Correlation--
+(array([ 0.42445047]), array([ 0.00058555]))
+Lag: 0
+--Min P-Value--
+(array([ 0.42445047]), array([ 0.00058555]))
+Lag: 0
+--Var--
+Crime Count vs valence
+--Max Correlation--
+(array([ 0.47149959]), array([ 0.00012526]))
+Lag: 1
+--Min P-Value--
+(array([ 0.47149959]), array([ 0.00012526]))
+Lag: 1
+--Var--
+Crime Count vs arousal
+--Max Correlation--
+(array([-0.5899117]), array([  5.64680014e-07]))
+Lag: 1
+--Min P-Value--
+(array([-0.5899117]), array([  5.64680014e-07]))
+Lag: 1
+-----END-----
+----BEGIN----
+Gang Crimes
+--Var--
+Gang Crimes vs Gang Crimes
+--Max Correlation--
+(array([ 0.69604887]), array([  4.74128367e-10]))
+Lag: 1
+--Min P-Value--
+(array([ 0.69604887]), array([  4.74128367e-10]))
+Lag: 1
+--Var--
+Gang Crimes vs Posts Count
+--Max Correlation--
+(array([ 0.21784133]), array([ 0.09451597]))
+Lag: 2
+--Min P-Value--
+(array([ 0.21784133]), array([ 0.09451597]))
+Lag: 2
+--Var--
+Gang Crimes vs valence
+--Max Correlation--
+(array([ 0.31022174]), array([ 0.0188493]))
+Lag: 5
+--Min P-Value--
+(array([ 0.31022174]), array([ 0.0188493]))
+Lag: 5
+--Var--
+Gang Crimes vs arousal
+--Max Correlation--
+(array([ 0.31022003]), array([ 0.01413425]))
+Lag: 0
+--Min P-Value--
+(array([ 0.31022003]), array([ 0.01413425]))
+Lag: 0
+-----END-----
+----BEGIN----
+Posts Count
+--Var--
+Posts Count vs Posts Count
+--Max Correlation--
+(array([ 0.69585543]), array([  4.81613954e-10]))
+Lag: 1
+--Min P-Value--
+(array([ 0.69585543]), array([  4.81613954e-10]))
+Lag: 1
+--Var--
+Posts Count vs valence
+--Max Correlation--
+(array([ 0.45738168]), array([ 0.0002107]))
+Lag: 1
+--Min P-Value--
+(array([ 0.45738168]), array([ 0.0002107]))
+Lag: 1
+--Var--
+Posts Count vs arousal
+--Max Correlation--
+(array([-0.48305983]), array([  6.98879030e-05]))
+Lag: 0
+--Min P-Value--
+(array([-0.48305983]), array([  6.98879030e-05]))
+Lag: 0
+-----END-----
+----BEGIN----
+valence
+--Var--
+valence vs valence
+--Max Correlation--
+(array([-0.6169349]), array([  1.95701163e-07]))
+Lag: 3
+--Min P-Value--
+(array([-0.6169349]), array([  1.95701163e-07]))
+Lag: 3
+--Var--
+valence vs arousal
+--Max Correlation--
+(array([-0.4907766]), array([ 0.00012295]))
+Lag: 6
+--Min P-Value--
+(array([-0.4907766]), array([ 0.00012295]))
+Lag: 6
+-----END-----
+----BEGIN----
+arousal
+--Var--
+arousal vs arousal
+--Max Correlation--
+(array([ 0.70143371]), array([  3.05042852e-10]))
+Lag: 1
+--Min P-Value--
+(array([ 0.70143371]), array([  3.05042852e-10]))
+Lag: 1
+-----END-----
+
+
+
+1-DAY
+
+Instagram
+
+----BEGIN----
+Crime Count
+--Var--
+Crime Count vs Crime Count
+--Max Correlation--
+(array([ 0.21039792]), array([ 0.05938773]))
+Lag: 6
+--Min P-Value--
+(array([ 0.20853001]), array([ 0.05696811]))
+Lag: 3
+--Var--
+Crime Count vs Gang Crimes
+--Max Correlation--
+(array([-0.09531442]), array([ 0.39432513]))
+Lag: 5
+--Min P-Value--
+(array([-0.09531442]), array([ 0.39432513]))
+Lag: 5
+--Var--
+Crime Count vs Posts Count
+--Max Correlation--
+(array([ 0.38641492]), array([ 0.00023799]))
+Lag: 1
+--Min P-Value--
+(array([ 0.38641492]), array([ 0.00023799]))
+Lag: 1
+--Var--
+Crime Count vs valence
+--Max Correlation--
+(array([ 0.41517512]), array([  7.04359736e-05]))
+Lag: 1
+--Min P-Value--
+(array([ 0.41517512]), array([  7.04359736e-05]))
+Lag: 1
+--Var--
+Crime Count vs arousal
+--Max Correlation--
+(array([ 0.29834456]), array([ 0.00526933]))
+Lag: 1
+--Min P-Value--
+(array([ 0.29834456]), array([ 0.00526933]))
+Lag: 1
+-----END-----
+----BEGIN----
+Gang Crimes
+--Var--
+Gang Crimes vs Gang Crimes
+--Max Correlation--
+(array([ 0.1595665]), array([ 0.14223296]))
+Lag: 1
+--Min P-Value--
+(array([ 0.1595665]), array([ 0.14223296]))
+Lag: 1
+--Var--
+Gang Crimes vs Posts Count
+--Max Correlation--
+(array([-0.33211538]), array([ 0.0019011]))
+Lag: 2
+--Min P-Value--
+(array([-0.33211538]), array([ 0.0019011]))
+Lag: 2
+--Var--
+Gang Crimes vs valence
+--Max Correlation--
+(array([-0.290924]), array([ 0.00690971]))
+Lag: 2
+--Min P-Value--
+(array([-0.290924]), array([ 0.00690971]))
+Lag: 2
+--Var--
+Gang Crimes vs arousal
+--Max Correlation--
+(array([ 0.29556386]), array([ 0.00738728]))
+Lag: 6
+--Min P-Value--
+(array([ 0.29556386]), array([ 0.00738728]))
+Lag: 6
+-----END-----
+----BEGIN----
+Posts Count
+--Var--
+Posts Count vs Posts Count
+--Max Correlation--
+(array([ 0.29251512]), array([ 0.00805043]))
+Lag: 6
+--Min P-Value--
+(array([ 0.29251512]), array([ 0.00805043]))
+Lag: 6
+--Var--
+Posts Count vs valence
+--Max Correlation--
+(array([ 0.69594082]), array([  7.30954578e-14]))
+Lag: 0
+--Min P-Value--
+(array([ 0.69594082]), array([  7.30954578e-14]))
+Lag: 0
+--Var--
+Posts Count vs arousal
+--Max Correlation--
+(array([ 0.37317283]), array([ 0.00037101]))
+Lag: 0
+--Min P-Value--
+(array([ 0.37317283]), array([ 0.00037101]))
+Lag: 0
+-----END-----
+----BEGIN----
+valence
+--Var--
+valence vs valence
+--Max Correlation--
+(array([ 0.39463102]), array([ 0.00026675]))
+Lag: 6
+--Min P-Value--
+(array([ 0.39463102]), array([ 0.00026675]))
+Lag: 6
+--Var--
+valence vs arousal
+--Max Correlation--
+(array([ 0.44562263]), array([  1.52334517e-05]))
+Lag: 0
+--Min P-Value--
+(array([ 0.44562263]), array([  1.52334517e-05]))
+Lag: 0
+-----END-----
+----BEGIN----
+arousal
+--Var--
+arousal vs arousal
+--Max Correlation--
+(array([ 0.38036157]), array([ 0.00030327]))
+Lag: 1
+--Min P-Value--
+(array([ 0.38036157]), array([ 0.00030327]))
+Lag: 1
+-----END-----
+
+
+Twitter
+

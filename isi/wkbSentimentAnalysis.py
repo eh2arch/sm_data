@@ -34,7 +34,7 @@ def create_wkb_dictionary():
 
 def do_wkb_analysis(db_name=db_twitter_posts, field_name='text', query={'coordinates':{'$ne':None}}):
 	wkb_words = create_wkb_dictionary()
-	db_data = db_name.find(query)
+	db_data = db_name.find(query, {'text':1, 'caption': 1})
 	for data_val in db_data:
 		text = ''
 		if field_name != 'text':
@@ -56,5 +56,5 @@ def do_wkb_analysis(db_name=db_twitter_posts, field_name='text', query={'coordin
 			db_name.update({'_id': data_val['_id']}, {'$set': {'valence': valence/total_count, 'arousal': arousal/total_count, 'dominance': dominance/total_count, 'wkb_sentiment_analysis_flag': True}})
 
 # do_wkb_analysis(db_name=db_twitter_posts)
-# do_wkb_analysis(db_name=db_instagram_posts, field_name='caption.text', query={'caption.text':{'$ne':None}})
-do_wkb_analysis(db_name=db_instagram_comments, query={})
+do_wkb_analysis(db_name=db_instagram_posts, field_name='caption.text', query={'caption.text':{'$ne':None}})
+# do_wkb_analysis(db_name=db_instagram_comments, query={})

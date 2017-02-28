@@ -14,12 +14,12 @@ html, body, #map, #map-container { height: 100%; margin: 0; padding: 0; overflow
 #controls {
   top: 10px;
   left: 110px;
-  width: 360px;
-  height: 110px;
+  width: 420px;
+  height: 130px;
 }
 #data-box {
   top: 10px;
-  left: 480px;
+  left: 550px;
   height: 55px;
   line-height: 45px;
   display: none;
